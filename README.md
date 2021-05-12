@@ -12,13 +12,17 @@ python3 Check-The-Sum.py <path-to-file-that-should-be-checked> <checksumAlgorith
 - python3
 
 **Output if the checksums match:**
+```bash
 SUCCESS! The checksums match each other
 used method: <used-method>
 system generated checksum: <checksum>
 expected checksum: <expected-checksum>
+```
 
 **Output if the checksums dont match:**
+```bash
 ERROR! THE CHECKSUMS DO NOT MATCH EACH OTHER!
 used method: <used-method>
 system generated checksum: <checksum>
 expected checksum: <expected-checksum>
+```
