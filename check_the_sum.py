@@ -24,12 +24,8 @@ except IndexError:
     print('python3 check_the_sum.py <path-to-file> <used-checksum> <expexted-checksum>')
     sys.exit(1)
 
-checkTheSum = subprocess.run(
-    ["openssl", 
-    "{}".format(checksum), 
-    "{}".format(file)], 
-    stdout=subprocess.PIPE, 
-    check=True)
+checkTheSum = subprocess.run(["openssl", "{}".format(checksum), "{}".format(file)], 
+stdout=subprocess.PIPE, check=True)
 
 out = checkTheSum.stdout.decode('utf-8')
 generatedCheckSum = out.split("=")[1].strip()
