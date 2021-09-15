@@ -15,19 +15,25 @@ import subprocess
 import sys
 
 def check(file, checksum, should_sum):
-    checkTheSum = subprocess.run(["openssl", "{}".format(checksum), "{}".format(file)],
+    """
+    The main function which will check the checksum
+    Needs the absolute path to the file, the checksum method
+    and the expected checksum
+    """
+    checksum_process = subprocess.run(["openssl", "{}".format(checksum), "{}".format(file)],
     stdout=subprocess.PIPE, check=True)
 
-    out = checkTheSum.stdout.decode('utf-8')
-    generatedCheckSum = out.split("=")[1].strip()
+    out = checksum_process.stdout.decode('utf-8')
+    generated_check_sum = out.split("=")[1].strip()
 
-    if generatedCheckSum == should_sum.strip():
+    if generated_check_sum == should_sum.strip():
         print('SUCCESS! The checksums match each other')
-        return 1
-
+        return_val = 0
     else:
         print('ERROR! THE CHECKSUMS DO NOT MATCH EACH OTHER!')
-        return 0
+        return_val = 1
+
+    return return_val
 
     print('used method: {}'.format(checksum))
     print('system generated checksum: {}'.format(out))
