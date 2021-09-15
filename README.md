@@ -1,4 +1,6 @@
 # SimpleCheckSum-Python
+[![Pylint](https://github.com/art-r/SimpleCheckSum-Python/actions/workflows/pylint.yml/badge.svg?branch=main)](https://github.com/art-r/SimpleCheckSum-Python/actions/workflows/pylint.yml)
+
 Simple python script that will check the given hash of a file against its system generated hash
 
 Simply call the script via the commandline the following way:
