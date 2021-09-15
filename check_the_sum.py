@@ -14,27 +14,30 @@ python3 check_the_sum.py <path-to-file> <used-checksum> <expexted-checksum>
 import subprocess
 import sys
 
-try:
-    file = sys.argv[1]
-    checksum = sys.argv[2]
-    shouldSum = sys.argv[3]
+def check(file, checksum, should_sum):
+    checkTheSum = subprocess.run(["openssl", "{}".format(checksum), "{}".format(file)],
+    stdout=subprocess.PIPE, check=True)
 
-except IndexError:
-    print('Error please call the program with these arguments:')
-    print('python3 check_the_sum.py <path-to-file> <used-checksum> <expexted-checksum>')
-    sys.exit(1)
+    out = checkTheSum.stdout.decode('utf-8')
+    generatedCheckSum = out.split("=")[1].strip()
 
-checkTheSum = subprocess.run(["openssl", "{}".format(checksum), "{}".format(file)],
-stdout=subprocess.PIPE, check=True)
+    if generatedCheckSum == should_sum.strip():
+        print('SUCCESS! The checksums match each other')
+        return 1
 
-out = checkTheSum.stdout.decode('utf-8')
-generatedCheckSum = out.split("=")[1].strip()
-if generatedCheckSum == shouldSum.strip():
-    print('SUCCESS! The checksums match each other')
+    else:
+        print('ERROR! THE CHECKSUMS DO NOT MATCH EACH OTHER!')
+        return 0
 
-else:
-    print('ERROR! THE CHECKSUMS DO NOT MATCH EACH OTHER!')
+    print('used method: {}'.format(checksum))
+    print('system generated checksum: {}'.format(out))
+    print('expexted checksum: {}'.format(should_sum))
 
-print('used method: {}'.format(checksum))
-print('system generated checksum: {}'.format(out))
-print('expexted checksum: {}'.format(shouldSum))
+
+if __name__ == "__main__":
+    try:
+        check(sys.argv[1], sys.argv[2], sys.argv[3])
+    except IndexError:
+        print('Error please call the program with these arguments:')
+        print('python3 check_the_sum.py <path-to-file> <used-checksum> <expexted-checksum>')
+        sys.exit(1)
