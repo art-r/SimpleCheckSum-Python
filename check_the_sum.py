@@ -33,11 +33,11 @@ def check(file, checksum, should_sum):
         print('ERROR! THE CHECKSUMS DO NOT MATCH EACH OTHER!')
         return_val = 1
 
-    return return_val
-
     print('used method: {}'.format(checksum))
     print('system generated checksum: {}'.format(out))
     print('expexted checksum: {}'.format(should_sum))
+
+    return return_val
 
 
 if __name__ == "__main__":
