@@ -11,7 +11,7 @@ python3 Check-The-Sum.py <path-to-file-that-should-be-checked> <checksumAlgorith
 
 **Requirements:**
 - openssl
-- python3
+- python3 (supports python >= 3.5)
 
 **Output if the checksums match:**
 ```bash
