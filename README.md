@@ -1,5 +1,6 @@
 # SimpleCheckSum-Python
 [![Pylint](https://github.com/art-r/SimpleCheckSum-Python/actions/workflows/pylint.yml/badge.svg?branch=main)](https://github.com/art-r/SimpleCheckSum-Python/actions/workflows/pylint.yml)
+[![Build Status](https://app.travis-ci.com/art-r/SimpleCheckSum-Python.svg?branch=main)](https://app.travis-ci.com/art-r/SimpleCheckSum-Python)
 
 Simple python script that will check the given hash of a file against its system generated hash
 
